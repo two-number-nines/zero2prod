@@ -8,10 +8,11 @@ on:
       - '**/Cargo.lock'
   workflow_dispatch:
 jobs:
-  security_audit:
-    runs-on: ubuntu-latest
+  cargo-deny:
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
-      - uses: taiki-e/install-action@cargo-deny
-      - name: Scan for vulnerabilities
-        run: cargo deny check advisories
+      - uses: actions/checkout@v4
+      - uses: EmbarkStudios/cargo-deny-action@v2
+        with:
+          log-level: warn
+          manifest-path: ./Cargo.toml
