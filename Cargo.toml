@@ -15,6 +15,7 @@ name = "zero2prod"
 actix-web = "4"
 tokio = { version = "1.43.0", features = ["rt", "rt-multi-thread", "macros"] }
 serde = { version = "1.0.218", features = ["derive"] }
+sqlx = { version = "0.8.3", default-features = false, features = ["runtime-tokio-rustls", "macros", "postgres", "uuid", "chrono", "migrate"] }
 
 [dev-dependencies]
 reqwest = "0.12.12"

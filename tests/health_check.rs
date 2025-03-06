@@ -1,6 +1,6 @@
 use reqwest::Client;
 use std::net::TcpListener;
-use zero2prod::run;
+use zero2prod::startup::run;
 
 #[tokio::test]
 async fn health_check_works() {
