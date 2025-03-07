@@ -20,7 +20,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
-          POSTGRES_DB: postgres
+          POSTGRES_DB: newsletter
         ports:
           - 5432:5432
     steps:
@@ -46,6 +46,12 @@ jobs:
           # Grant create db privileges to the app user
           GRANT_QUERY="ALTER USER ${APP_USER} CREATEDB;"
           PGPASSWORD="password" psql -U "postgres" -h "localhost" -c "${GRANT_QUERY}"
+          
+          # Create the database
+          CREATE_DATABASE_QUERY="ALTER USER ${APP_USER} CREATEDB;"
+          PGPASSWORD="password" psql -U "postgres" -h "localhost" -c "${GRANT_QUERY}"
+
+
       - name: Migrate database
         run: SKIP_DOCKER=true ./scripts/init_db.sh
       - name: Install cargo-llvm-cov
