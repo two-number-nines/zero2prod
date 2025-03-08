@@ -35,6 +35,8 @@ fi
  DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@localhost:${DB_PORT}/${DB_NAME}
 
 export PGPASSWORD=${DB_PASSWORD}
+# TODO: this thing sucks, add more specific error
+# error example: handling psql: error: connection to server at "localhost" (::1), port 5432 failed: FATAL:  database "newsletter" does not exist
 until psql -h "localhost" -U "${DB_USER}" -p "${DB_PORT}" -d "${DB_NAME}" -c '\q'; do
    >&2 echo "Postgres still unavailable - sleeping"
    sleep 1
