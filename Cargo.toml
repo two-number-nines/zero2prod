@@ -26,4 +26,6 @@ tracing-log = "0.1.4"
 
 
 [dev-dependencies]
+once_cell = "1.21.0"
 reqwest = "0.12.12"
+
